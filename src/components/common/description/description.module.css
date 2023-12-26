@@ -1,0 +1,20 @@
+.description-container {
+  padding: 1rem 3rem;
+  padding-bottom: 0px;
+}
+.description-container > * {
+  margin-bottom: 0.8rem;
+}
+
+.li {
+  list-style-type: none;
+  margin-left: 1rem;
+  margin-bottom: 0.3rem;
+}
+.li::before {
+  content: "•";
+  color: var(--primary);
+  display: inline-block;
+  width: 1rem;
+  margin-left: -1rem;
+}

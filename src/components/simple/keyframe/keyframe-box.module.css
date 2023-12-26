@@ -1,0 +1,94 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #780000;
+  position: relative;
+  animation: animation 10s infinite;
+}
+
+@keyframes animation {
+  0% {
+    left: 0;
+    top: 0;
+    transform: rotate(0deg);
+    background-color: #780000;
+  }
+  10% {
+    left: 0%;
+    top: 40%;
+    transform: rotate(0deg);
+    background-color: #e63946;
+  }
+  15% {
+    left: 0%;
+    top: 40%;
+    transform: rotate(-90deg);
+    background-color: #ff7b54;
+  }
+  25% {
+    left: 40%;
+    top: 40%;
+    transform: rotate(-90deg);
+    background-color: #ff9b54;
+  }
+  30% {
+    left: 40%;
+    top: 40%;
+    transform: rotate(-180deg);
+    background-color: #ffb454;
+  }
+  40% {
+    left: 40%;
+    top: -40%;
+    transform: rotate(-180deg);
+    background-color: #ffcb54;
+  }
+  45% {
+    left: 40%;
+    top: -40%;
+    transform: rotate(-270deg);
+    background-color: #ffe654;
+  }
+  55% {
+    left: -40%;
+    top: -40%;
+    transform: rotate(-270deg);
+    background-color: #baff44;
+  }
+  60% {
+    left: -40%;
+    top: -40%;
+    transform: rotate(-360deg);
+    background-color: #00842a;
+  }
+  70% {
+    left: -40%;
+    top: 40%;
+    transform: rotate(-360deg);
+    background-color: #0089d8;
+  }
+  75% {
+    left: -40%;
+    top: 40%;
+    transform: rotate(-450deg);
+    background-color: #843ee0;
+  }
+  85% {
+    left: 0%;
+    top: 40%;
+    transform: rotate(-450deg);
+    background-color: #e3149b;
+  }
+  90% {
+    left: 0%;
+    top: 40%;
+    transform: rotate(-540deg);
+    background-color: #d63232;
+  }
+  100% {
+    left: 0%;
+    top: 0%;
+    transform: rotate(-540deg);
+    background-color: #780000;
+  }
+}

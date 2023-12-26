@@ -1,0 +1,27 @@
+.svg {
+  height: 300px;
+  width: 300px;
+}
+
+.svg > path {
+  stroke: white;
+  stroke-width: 3px;
+}
+
+.svg path:nth-child(1) {
+  stroke: green;
+}
+
+.svg path:nth-child(3) {
+  stroke: blue;
+}
+.svg path:nth-child(4) {
+  stroke: red;
+}
+
+.svg path:nth-child(5) {
+  stroke: blue;
+}
+.svg path:nth-child(6) {
+  stroke: blue;
+}

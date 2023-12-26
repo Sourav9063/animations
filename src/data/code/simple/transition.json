@@ -1,0 +1,4 @@
+{
+  "jsx": "import React from 'react';\n  import styles from './transition.module.css';\n  \n  export default function Transition() {\n    return <div className={styles['box']}></div>;\n  }\n  ",
+  "css": ".box {\n    width: 100px;\n    height: 100px;\n    background-color: red;\n    transition: width 2s, height 2s, background-color 2s, transform 2s;\n  }\n  .box:hover {\n    width: 300px;\n    height: 300px;\n    background-color: blue;\n    transform: rotate(180deg);\n  }\n  "
+}
