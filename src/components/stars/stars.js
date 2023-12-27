@@ -34,7 +34,7 @@ const move = (x1, y1, x2, y2, r) => {
   };
 };
 
-let stars = [];
+// let stars = [];
 // stars = getRandomStarPlacement(ratio > 1 ? 300 : 375);
 // const percent = ratio > 1 ? 12 : 15;
 // const distConst = Math.max(percent * ratio * (percent * ratio), 255);
@@ -45,9 +45,10 @@ export default function Stars() {
   const ratio = useRef();
   const percent = useRef();
   const distConst = useRef();
+  const stars = useRef([]);
   useLayoutEffect(() => {
     ratio.current = window.innerHeight / window.innerWidth;
-    stars = getRandomStarPlacement(ratio.current > 1 ? 300 : 375);
+    stars.current = getRandomStarPlacement(ratio.current > 1 ? 300 : 375);
     percent.current = ratio.current > 1 ? 12 : 15;
     distConst.current = Math.max(
       percent.current * ratio.current * (percent.current * ratio.current),
@@ -88,7 +89,7 @@ export default function Stars() {
         <p>y={y}</p>
         <p>ratio:{ratio.current}</p>
       </div>
-      {stars.map((star, index) => {
+      {stars.current.map((star, index) => {
         return (
           <div
             key={index}
