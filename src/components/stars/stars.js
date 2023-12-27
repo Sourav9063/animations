@@ -1,8 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import style from "./stars.module.css";
-
-let ratio = window.innerHeight / window.innerWidth;
 
 const getRandomStarPlacement = (starsCount) => {
   const stars = [];
@@ -37,13 +35,28 @@ const move = (x1, y1, x2, y2, r) => {
 };
 
 let stars = [];
-stars = getRandomStarPlacement(ratio > 1 ? 300 : 375);
-const percent = ratio > 1 ? 12 : 15;
-const distConst = Math.max(percent * ratio * (percent * ratio), 255);
+// stars = getRandomStarPlacement(ratio > 1 ? 300 : 375);
+// const percent = ratio > 1 ? 12 : 15;
+// const distConst = Math.max(percent * ratio * (percent * ratio), 255);
 
 export default function Stars() {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
+  const ratio = useRef();
+  const percent = useRef();
+  const distConst = useRef();
+  useLayoutEffect(() => {
+    ratio.current = window.innerHeight / window.innerWidth;
+    stars = getRandomStarPlacement(ratio.current > 1 ? 300 : 375);
+    percent.current = ratio.current > 1 ? 12 : 15;
+    distConst.current = Math.max(
+      percent.current * ratio.current * (percent.current * ratio.current),
+      255
+    );
+
+    return () => {};
+  }, []);
+
   return (
     <div
       className={style.body}
@@ -73,7 +86,7 @@ export default function Stars() {
       <div className={style.debug}>
         <p>x={x}</p>
         <p>y={y}</p>
-        <p>ratio:{ratio}</p>
+        <p>ratio:{ratio.current}</p>
       </div>
       {stars.map((star, index) => {
         return (
@@ -85,38 +98,46 @@ export default function Stars() {
               backgroundColor: star.backgroundColor,
               left:
                 distance(x, y, star.left, star.top) <
-                (ratio <= 1 ? distConst * ratio : distConst)
+                (ratio.current <= 1
+                  ? distConst.current * ratio.current
+                  : distConst.current)
                   ? move(
                       x,
                       y,
                       star.left,
                       star.top,
-                      ratio <= 1
-                        ? Math.sqrt(distConst) * ratio
-                        : Math.sqrt(distConst)
+                      ratio.current <= 1
+                        ? Math.sqrt(distConst.current) * ratio.current
+                        : Math.sqrt(distConst.current)
                     ).newX + "%"
                   : star.left + "%",
               top:
                 distance(x, y, star.left, star.top) <
-                (ratio >= 1 ? distConst / ratio : distConst)
+                (ratio.current >= 1
+                  ? distConst.current / ratio.current
+                  : distConst.current)
                   ? move(
                       x,
                       y,
                       star.left,
                       star.top,
-                      ratio >= 1
-                        ? Math.sqrt(distConst) / ratio
-                        : Math.sqrt(distConst)
+                      ratio.current >= 1
+                        ? Math.sqrt(distConst.current) / ratio.current
+                        : Math.sqrt(distConst.current)
                     ).newY + "%"
                   : star.top + "%",
               opacity:
                 distance(x, y, star.left, star.top) <
-                (ratio >= 1 ? distConst / ratio : distConst)
+                (ratio.current >= 1
+                  ? distConst.current / ratio.current
+                  : distConst.current)
                   ? 1
                   : star.opacity,
               animation:
                 distance(x, y, star.left, star.top) <
-                (ratio >= 1 ? distConst / ratio : distConst)
+                (ratio.current >= 1
+                  ? distConst.current / ratio.current
+                  : distConst.current)
                   ? "none"
                   : `${style.starAni} ${star.animationDuration} ease ${star.animationDelay} infinite alternate`,
               width: star.size + "px",
